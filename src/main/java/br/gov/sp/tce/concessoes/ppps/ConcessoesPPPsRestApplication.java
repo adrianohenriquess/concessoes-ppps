@@ -7,5 +7,6 @@ import javax.ws.rs.core.Application;
  *
  */
 @ApplicationPath("/concessoes-ppps")
-public class ConcessoespppsRestApplication extends Application {
+public class ConcessoesPPPsRestApplication extends Application {
+    
 }
