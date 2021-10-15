@@ -24,7 +24,7 @@ RUN ./mvnw package -DskipTests
 #RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.war)
 
 #### Stage 2: A minimal docker image with command to run the app 
-FROM openjdk:11-jre AS customers-api
+FROM openjdk:11-jre AS concessoes-ppps
 
 ARG DEPENDENCY=/app/target/dependency
 
@@ -32,7 +32,7 @@ ARG DEPENDENCY=/app/target/dependency
 COPY --from=build /app/target/*.jar /opt/app/app.jar
 
 ENV JAVA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
-ENV DB_HOST="customers-db"
-ENV MYSQL_ROOT_PASSWORD="customersapp251"
+ENV DB_HOST="concessoes-db"
+ENV MYSQL_ROOT_PASSWORD="password"
 
 ENTRYPOINT exec java $JAVA_OPTS -jar /opt/app/app.jar
