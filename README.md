@@ -1,2 +1,2 @@
 # CONCESSOES-PPPS
-Rest Api de Concessoes e PPPs
+Estrutura básica de um projeto com Quarkus e Angular
