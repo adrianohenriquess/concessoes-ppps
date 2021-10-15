@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "43b30a1b-065d-4f5f-8ff0-35262e6b7dc0",
+		"name": "CONCESSOES e PPPs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar Concessao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descricao\": \"Parque da Luz\",\n    \"dataInicial\": \"2017-05-01\",\n    \"dataFinal\": \"2037-05-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/concessoes-ppps/concessoes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"concessoes-ppps",
+						"concessoes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Concessoes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/concessoes-ppps/concessoes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"concessoes-ppps",
+						"concessoes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar Concessao",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 30,\n    \"descricao\": \"Linha Amarela do Metro - Butantã/Luz\",\n    \"dataInicial\": \"2015-05-01\",\n    \"dataFinal\": \"2035-05-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/concessoes-ppps/concessoes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"concessoes-ppps",
+						"concessoes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Concessao",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/concessoes-ppps/concessoes/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"concessoes-ppps",
+						"concessoes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
