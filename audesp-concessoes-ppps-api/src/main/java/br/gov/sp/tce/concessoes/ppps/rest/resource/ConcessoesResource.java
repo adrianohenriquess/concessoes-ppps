@@ -1,6 +1,7 @@
 package br.gov.sp.tce.concessoes.ppps.rest.resource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -15,51 +16,53 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.modelmapper.ModelMapper;
+
 import br.gov.sp.tce.concessoes.ppps.persistence.entity.Concessao;
-import br.gov.sp.tce.concessoes.ppps.repository.ConcessoesRepository;
+import br.gov.sp.tce.concessoes.ppps.repository.GenericRepository;
 import br.gov.sp.tce.concessoes.ppps.rest.dto.ConcessaoDTO;
 
-/**
- *
- */
 @Path("/concessoes")
 @Singleton
 public class ConcessoesResource {
 
+    private static ModelMapper modelMapper = new ModelMapper();
+
     @Inject
-    private ConcessoesRepository repository;
+    private GenericRepository<Concessao> repository;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Concessao criarConcessao(ConcessaoDTO concessao) {
-        return repository.save(new Concessao(concessao.getId(), concessao.getDescricao(), 
-            concessao.getDataInicial(), concessao.getDataFinal())).orElseThrow(BadRequestException::new);
+    public ConcessaoDTO criarConcessao(ConcessaoDTO concessaoDTO) {
+        return repository.save(modelMapper.map(concessaoDTO, Concessao.class))
+                .map((c)-> modelMapper.map(c, ConcessaoDTO.class))
+                .orElseThrow(BadRequestException::new);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Concessao> listarConcessoes() {
-        return repository.findAll();
+    public List<ConcessaoDTO> listarConcessoes() {
+        return repository.findAll().stream()
+            .map((c) -> modelMapper.map(c, ConcessaoDTO.class))
+            .collect(Collectors.toList());
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public ConcessaoDTO update(ConcessaoDTO concessao) {
+    public ConcessaoDTO alterarConcessao(ConcessaoDTO concessao) {
         Concessao entity = new Concessao(concessao.getId(), concessao.getDescricao(), 
         concessao.getDataInicial(), concessao.getDataFinal());
         return repository.update(entity)
-            .map((c) -> new ConcessaoDTO(c.getId(), c.getDescricao(), 
-                c.getDataInicial(), c.getDataFinal()))
+            .map((c) -> modelMapper.map(c, ConcessaoDTO.class))
             .orElseThrow(NotFoundException::new);
     }
 
     @Path("/{id}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public ConcessaoDTO delete(@PathParam("id") Long id) {
+    public ConcessaoDTO removerConcessao(@PathParam("id") Long id) {
         return repository.deleteById(id)
-            .map((c) -> new ConcessaoDTO(c.getId(), c.getDescricao(), 
-                c.getDataInicial(), c.getDataFinal()))
+            .map((c) -> modelMapper.map(c, ConcessaoDTO.class))
             .orElseThrow(NotFoundException::new);
     }
     

@@ -1,7 +1,6 @@
 package br.gov.sp.tce.concessoes.ppps.persistence.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Table(name = "concessao")
 @Entity
-public class Concessao {
+public class Concessao extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +35,6 @@ public class Concessao {
     private LocalDate dataInicial;
 
     private LocalDate dataFinal;
+
+
 }
