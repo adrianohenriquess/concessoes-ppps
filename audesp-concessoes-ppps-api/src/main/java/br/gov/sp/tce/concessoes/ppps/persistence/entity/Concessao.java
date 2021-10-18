@@ -16,7 +16,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Setter
 @Getter
 @AllArgsConstructor

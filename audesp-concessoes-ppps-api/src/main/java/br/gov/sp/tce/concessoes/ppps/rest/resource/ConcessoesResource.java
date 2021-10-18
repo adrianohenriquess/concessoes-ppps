@@ -26,10 +26,11 @@ import br.gov.sp.tce.concessoes.ppps.rest.dto.ConcessaoDTO;
 @Singleton
 public class ConcessoesResource {
 
-    private static ModelMapper modelMapper = new ModelMapper();
+    @Inject
+    protected ModelMapper modelMapper;
 
     @Inject
-    private GenericRepository<Concessao> repository;
+    protected GenericRepository<Concessao> repository;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
