@@ -1,7 +1,6 @@
 package br.gov.sp.tce.concessoes.ppps.rest.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.json.bind.annotation.JsonbDateFormat;
 
