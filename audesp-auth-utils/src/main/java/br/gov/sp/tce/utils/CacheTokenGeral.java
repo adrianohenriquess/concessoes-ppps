@@ -10,12 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 public class CacheTokenGeral {
 
 	private long tempoCacheToken;
-
 	private Map<String, Calendar> pilha = new ConcurrentHashMap<>();
-	private ConfigurationHelper configuration;
 	
 	public CacheTokenGeral(ConfigurationHelper configuration) {
-		this.configuration = configuration;
 		tempoCacheToken = 0l;
 		try {
 			tempoCacheToken = Long.valueOf(configuration.getProperty(Constants.AUDESP_CACHE_TOKEN));

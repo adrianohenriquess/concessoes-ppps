@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 import br.gov.sp.tce.exception.AuthorizationException;
 import br.gov.sp.tce.utils.AESUtil;
@@ -19,8 +20,9 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	
 	private CacheTokenGeral cacheTokenGeral;
 	
-	public AuthorizationServiceImpl(ConfigurationHelper configuration) {
+	public AuthorizationServiceImpl(ConfigurationHelper configuration, CacheTokenGeral cacheTokenGeral) {
 		this.configuration = configuration;
+		this.cacheTokenGeral = cacheTokenGeral;
 	}
 
 	@Override
@@ -35,8 +37,8 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 			
 			cacheTokenGeral.addToken(token);
 			return gson.fromJson(AESUtil.decripta(UUID.fromString(chave), token), clazz);
-		} catch (IllegalStateException e) {
-			throw new AuthorizationException("Token inválido.");
+		} catch (IllegalStateException | JsonSyntaxException e) {
+			throw new AuthorizationException("Token inválido.", e);
 		}		
 	}
 
