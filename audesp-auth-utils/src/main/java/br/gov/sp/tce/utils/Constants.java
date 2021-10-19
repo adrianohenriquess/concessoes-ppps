@@ -10,6 +10,8 @@ public class Constants {
 	
 	public static final String AUDESP_CACHE_TOKEN = "audesp.cache.token";
 	
+	public static final String CODIGO_SISTEMA = "audesp.codigo.sistema";
+	
 	public static final String INFO = "info";
 
 	public static final String BEARER = "Bearer ";

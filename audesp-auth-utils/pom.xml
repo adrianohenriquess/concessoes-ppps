@@ -90,9 +90,18 @@
 			<version>1.7.32</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>audesp</groupId> <artifactId>audespWSClient</artifactId> 
-			<version>2.1.0-SNAPSHOT</version> </dependency> -->
+		<dependency>
+			<groupId>audesp</groupId>
+			<artifactId>audespWSClient</artifactId> 
+			<version>2.1.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>stax</groupId>
+  					<artifactId>stax-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
-	<name>edicao-dados-api</name>
+	<name>audesp-auth-utils</name>
 </project>
