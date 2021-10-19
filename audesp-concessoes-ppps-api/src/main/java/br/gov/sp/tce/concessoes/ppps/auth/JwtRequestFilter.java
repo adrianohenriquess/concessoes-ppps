@@ -13,7 +13,6 @@ import org.apache.http.HttpStatus;
 import br.gov.sp.tce.auth.AuthorizationService;
 import br.gov.sp.tce.exception.AuthorizationException;
 import br.gov.sp.tce.model.user.UsuarioDelegacoesVO;
-import br.gov.sp.tce.utils.ConfigurationHelper;
 import lombok.extern.slf4j.Slf4j;
 
 @Provider
@@ -28,6 +27,11 @@ public class JwtRequestFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
+        String currentPath = requestContext.getUriInfo().getPath();
+        if (currentPath != null && currentPath.startsWith("/login")) {
+            log.info("token authentication ignored for path ->> " + currentPath);
+            return;
+        }
         UsuarioDelegacoesVO user = null;
         String authHeader = requestContext.getHeaderString(AUTHORIZATION_HEADER);
         String token = null;
