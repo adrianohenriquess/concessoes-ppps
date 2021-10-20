@@ -1,12 +1,52 @@
 {
 	"info": {
-		"_postman_id": "43b30a1b-065d-4f5f-8ff0-35262e6b7dc0",
+		"_postman_id": "8d03877e-15cb-4037-bc3d-825f12f934ef",
 		"name": "CONCESSOES e PPPs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Criar Concessao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"descricao\": \"Parque da Luz\",\n    \"dataInicial\": \"2017-05-01\",\n    \"dataFinal\": \"2037-05-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/concessoes-ppps/concessoes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"concessoes-ppps",
+						"concessoes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Concessoes Login",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -20,16 +60,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/concessoes-ppps/concessoes/",
+					"raw": "http://localhost:8888/concessoes-ppps/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"concessoes-ppps",
-						"concessoes",
-						""
+						"login"
 					]
 				}
 			},
@@ -41,23 +80,39 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Author",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:8080/concessoes-ppps/concessoes/",
+					"raw": "http://localhost:8888/concessoes-ppps/concessoes",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"concessoes-ppps",
-						"concessoes",
-						""
+						"concessoes"
 					]
 				}
 			},
@@ -66,11 +121,21 @@
 		{
 			"name": "Alterar Concessao",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 30,\n    \"descricao\": \"Linha Amarela do Metro - Butantã/Luz\",\n    \"dataInicial\": \"2015-05-01\",\n    \"dataFinal\": \"2035-05-01\"\n}",
+					"raw": "{\n    \"id\": 1,\n    \"descricao\": \"Linha Amarela do Metro\",\n    \"dataInicial\": \"2015-05-01\",\n    \"dataFinal\": \"2035-05-01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -78,12 +143,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/concessoes-ppps/concessoes/",
+					"raw": "http://localhost:8888/concessoes-ppps/concessoes/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"concessoes-ppps",
 						"concessoes",
@@ -96,6 +161,16 @@
 		{
 			"name": "Deletar Concessao",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -103,12 +178,12 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:8080/concessoes-ppps/concessoes/3",
+					"raw": "http://localhost:8888/concessoes-ppps/concessoes/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"concessoes-ppps",
 						"concessoes",
@@ -117,6 +192,12 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "JWT_TOKEN",
+			"value": "5TX1sKYcATts9+UuXNlBsVQM/OeAPt4tssCVedr/fIc+5fuYeXJNmMeja5flYkx7FXQJWk95TdBU6BRe4TtIbAG69195EzZRwgRjHyDKi4i3IktJk8FoCXTCKLHuLZ7WMipDTYIFfwfUyAX4vORbSo+UeBmUwEBu3ozo5d3GIZtB3Hzj0bwOWYlmZr3+gLwxnFQDIuYsvY/z1sNuXlEsd1D8RdktAUZYYQtmR2qWh0hSFdMyshiK5rRy2SAs7Sb6L6oE2WAUPyZIJpB/ppm4Cgoha9zdjzMJmYSJnBcT/dmghgS2ojf88Wx6KaXsChNk885Ip/M5cuyMymhQiKdGaznB4eQ1lEHBwSNWPtSROb4plwz0FMiiIbbIrQ6EQyDWWAeANyIcVbbIcu07MWE4ig7jXEO+B4A/qfo6XtdnitO4zIGKB5vtd29qKOiWG36xRNFyliXivl/5/bsnlPnUZuN60z6TBjI2T9+WXW4rcOcsszsJdNy6BMzg7Z09h/mavDGJts4Y/nYJQsaVsJlZIFMPPlaBoaRBxbyi4iRJ9yFmF7680MQRBow5BbeskiMYx5hHj6GzGxx/OEfi8l39YMc6PvYKOmdQui7x4FDO7EEzJaZt/Ccpenk7DgZ0A81pU+MeYtnS2lXiD7z/QAljfTmCbvoWeL9J+WhH/WBPBoXQ+5DIvT9OWq4Q9QEP+xbAelSDaRlwAbO3va5seFgRP2jADfI4k33KtiIrbhDMhaC2gX1JZ7+6d4Q7mu3Bgac6RpnHCBRLY9kQkKiEV/4JCV5rbXs+iNgatXuzeTCY1M3KW5cBRVhcqlJbSV8QMNnJ9Vah+A3NPsIOJJsFLT+GzoXoEa58ht5BnEuG4gU9zUM4QbBdDP4Wz+1D4IoXosK0fP6o7cN7rBp/EeXR8U9P0w=="
 		}
 	]
 }
