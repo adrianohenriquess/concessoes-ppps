@@ -65,8 +65,7 @@
             <groupId>br.gov.sp.tce</groupId>
             <artifactId>audesp-auth-utils</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-       
+        </dependency>       
     </dependencies>
     <build>
         <finalName>quarkus-tutorial</finalName>

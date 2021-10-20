@@ -8,6 +8,8 @@ import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.modelmapper.ModelMapper;
 
+import br.gov.sp.tce.auth.AuthenticationService;
+import br.gov.sp.tce.auth.AuthenticationServiceImpl;
 import br.gov.sp.tce.auth.AuthorizationService;
 import br.gov.sp.tce.auth.AuthorizationServiceImpl;
 import br.gov.sp.tce.utils.CacheTokenGeral;
@@ -38,6 +40,11 @@ public class ConcessoesPPPsRestApplication extends Application {
     @ApplicationScoped
     public AuthorizationService authorization(ConfigurationHelper configurationHelper) {
         return new AuthorizationServiceImpl(configurationHelper, new CacheTokenGeral(configurationHelper));
+    }
+    
+    @ApplicationScoped
+    public AuthenticationService authentication(ConfigurationHelper configurationHelper) {
+        return new AuthenticationServiceImpl(configurationHelper);
     }
     
 }
